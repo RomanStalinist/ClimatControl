@@ -48,10 +48,6 @@ namespace DemoExam.ViewModels
                         CurrentPage = new RequestsPage();
                         break;
 
-                    case "Назначение":
-                        CurrentPage = new AssignmentsPage();
-                        break;
-
                     case "Статистика":
                         CurrentPage = new StatisticsPage();
                         break;
@@ -100,25 +96,7 @@ namespace DemoExam.ViewModels
                         {
                             Content = "Все заявки"
                         },
-                        new ListViewItem()
-                        {
-                            Content = "Выход"
-                        }
-                    };
-                    break;
-
-                case Administrator _:
-                    MenuItems = new ListViewItem[]
-                    {
-                        new ListViewItem()
-                        {
-                            Content = "Домой"
-                        },
-                        new ListViewItem()
-                        {
-                            Content = "Назначение"
-                        },
-                        new ListViewItem()
+                        new ListViewItem
                         {
                             Content = "Статистика"
                         },

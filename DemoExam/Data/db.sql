@@ -1,7 +1,7 @@
 ﻿-- we don't know how to generate root <with-no-name> (class Root) :(
 
 if db_id('ClimateControl') is null
-    create database ClimateControl
+    create database ClimateControl collate Cyrillic_General_CI_AS
 go
 
 use ClimateControl
@@ -13,20 +13,7 @@ go
 grant view any column encryption key definition, view any column master key definition on database :: ClimateControl to [public]
 go
 
-create table Administrators
-(
-    Id       int identity
-        constraint PkAdministratorsId
-            primary key,
-    Phone    nvarchar(15)  not null
-        constraint UqAdministratorsPhone
-            unique,
-    Password nvarchar(255) not null,
-    Name     nvarchar(100) not null
-)
-go
-
-create table Customers
+create table dbo.Customers
 (
     Id       int identity
         constraint PkCustomersId
@@ -39,16 +26,14 @@ create table Customers
 )
 go
 
-create table Requests
+create table dbo.Requests
 (
     Id                 int identity
         constraint PkRequestsId
             primary key,
     CustomerId         int                         not null
         constraint FkRequestsCustomers
-            references Customers
-        constraint FkRequestsCustomers
-            references Customers
+            references dbo.Customers
             on delete cascade,
     CreatedAt          datetime2 default getdate() not null,
     EquipmentType      nvarchar(100),
@@ -57,7 +42,7 @@ create table Requests
 )
 go
 
-create table Specialists
+create table dbo.Specialists
 (
     Id          int identity
         constraint PkSpecialistsId
@@ -71,35 +56,31 @@ create table Specialists
 )
 go
 
-create table Comments
+create table dbo.Comments
 (
     Id           int identity,
     RequestId    int not null
         constraint FkCommentsRequests
-            references Requests
-        constraint FkCommentsRequests
-            references Requests
+            references dbo.Requests
             on delete cascade,
     SpecialistId int not null
         constraint FkCommentsSpecialists
-            references Specialists
-        constraint FkCommentsSpecialists
-            references Specialists
+            references dbo.Specialists
             on delete cascade,
     Content      nvarchar(max),
     CreatedAt    datetime2 default getdate()
 )
 go
 
-create table RequestSpecialists
+create table dbo.RequestSpecialists
 (
     RequestId    int not null
         constraint FkRequestSpecialistsRequests
-            references Requests
+            references dbo.Requests
             on delete cascade,
     SpecialistId int not null
         constraint FkRequestSpecialistsSpecialists
-            references Specialists
+            references dbo.Specialists
             on delete cascade,
     UpdatedAt    datetime2 default getdate(),
     constraint PkRequestSpecialistsRequestIdSpecialistId
@@ -107,7 +88,7 @@ create table RequestSpecialists
 )
 go
 
-create table Statuses
+create table dbo.Statuses
 (
     Name nvarchar(100) not null,
     Id   int identity
@@ -116,30 +97,27 @@ create table Statuses
 )
 go
 
-create table RequestStatuses
+create table dbo.RequestStatuses
 (
     Id        int identity
         constraint PkRequestStatuses
             primary key,
     RequestId int not null
         constraint FkRequestStatusesRequests
-            references Requests
-        constraint FkRequestStatusesRequests
-            references Requests
+            references dbo.Requests
             on delete cascade,
     StatusId  int not null
         constraint FkRequestStatusesStatuses
-            references Statuses
-        constraint FkRequestStatusesStatuses
-            references Statuses
+            references dbo.Statuses
             on delete cascade,
     UpdatedAt datetime2 default getdate(),
+    CreatedAt datetime2 default getdate(),
     constraint UqRequestStatusesRequestIdStatusId
         unique (RequestId, StatusId)
 )
 go
 
-deny delete, insert, update on Statuses to [public]
+deny delete, insert, update on dbo.Statuses to [public]
 go
 
 create proc ADDREQUESTATUS(@RequestId int, @StatusId int)
@@ -169,7 +147,7 @@ as
     end
 go
 
-create procedure ADDREQUESTSPECIALIST(@RequestId int, @SpecialistId int) as
+create procedure dbo.ADDREQUESTSPECIALIST(@RequestId int, @SpecialistId int) as
 -- missing source code
 go
 
@@ -240,4 +218,3 @@ as
         return
     end
 go
-

@@ -35,20 +35,21 @@
                         <Grid.ContextMenu>
                             
                             <ContextMenu>
-                                
-                                <Label Content="Изменение статуса"/>
+                                <ContextMenu.DataContext>
+                                    <vm:MyRequestsPageViewModel/>
+                                </ContextMenu.DataContext>
                                 
                                 <MenuItem CommandParameter="1"
                                           Header="В процессе ремонта"
-                                          Command="{Binding DataContext.ChangeStatusCommand, RelativeSource={RelativeSource AncestorType=ListView}}"/>
+                                          Command="{Binding ChangeStatusCommand}"/>
                                 
-                                <MenuItem CommandParameter="2"
-                                          Header="Завершена"
-                                          Command="{Binding DataContext.ChangeStatusCommand, RelativeSource={RelativeSource AncestorType=ListView}}"/>
+                                <MenuItem Header="Завершена"
+                                          CommandParameter="2"
+                                          Command="{Binding ChangeStatusCommand}"/>
                                 
                                 <MenuItem CommandParameter="3"
                                           Header="Ожидание комплектующих"
-                                          Command="{Binding DataContext.ChangeStatusCommand, RelativeSource={RelativeSource AncestorType=ListView}}"/>
+                                          Command="{Binding ChangeStatusCommand}"/>
                                 
                             </ContextMenu>
                             
@@ -123,7 +124,7 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Border BorderThickness=".5,1,.5,.5"
+        <Border BorderThickness=".5"
                 BorderBrush="#4f4f4f"
                 VerticalAlignment="Bottom"
                 HorizontalAlignment="Stretch">

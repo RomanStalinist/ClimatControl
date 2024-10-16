@@ -185,6 +185,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Info\Csv\Comments.csv" />
+    <None Include="Info\Csv\Customers.csv" />
+    <None Include="Info\Csv\Requests.csv" />
+    <None Include="Info\Csv\RequestSpecialists.csv" />
+    <None Include="Info\Csv\RequestStatuses.csv" />
+    <None Include="Info\Csv\Specialists.csv" />
+    <None Include="Info\Csv\Statuses.csv" />
+    <None Include="Info\Задание.docx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -195,6 +203,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\db.sql" />
+    <Resource Include="Info\idef0_1.png" />
+    <Resource Include="Info\idef0_2.png" />
+    <Resource Include="Info\idef0_3.png" />
+    <Resource Include="Info\idef0_4.png" />
+    <Resource Include="Info\idef0_5.png" />
+    <Resource Include="Info\Img\Administrators.png" />
+    <Resource Include="Info\Img\Comments.png" />
+    <Resource Include="Info\Img\Customers.png" />
+    <Resource Include="Info\Img\Requests.png" />
+    <Resource Include="Info\Img\RequestSpecialists.png" />
+    <Resource Include="Info\Img\RequestStatuses.png" />
+    <Resource Include="Info\Img\Specialists.png" />
+    <Resource Include="Info\Img\Statuses.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

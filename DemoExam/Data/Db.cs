@@ -126,6 +126,7 @@ namespace DemoExam.Data
                 Debug.WriteLineIf(TraceLevel is TraceLevel.Info, cmd.CommandText);
 
                 result = cmd.ExecuteNonQuery();
+                Connection.Close();
                 return result;
             }
 

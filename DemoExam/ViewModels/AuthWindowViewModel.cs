@@ -46,9 +46,9 @@ namespace DemoExam.ViewModels
             set => SetField(ref _role, value);
         }
 
-        public string[] Roles => new string[3]
+        public string[] Roles => new string[2]
         {
-            Customer.GetRole(), Specialist.GetRole(), Administrator.GetRole()
+            Customer.GetRole(), Specialist.GetRole()
         };
 
         // Commands
@@ -83,10 +83,6 @@ namespace DemoExam.ViewModels
                         user = db.Select<Specialist>(null, authColumns, authArgs).FirstOrDefault();
                         break;
 
-                    case "Администратор":
-                        user = db.Select<Administrator>(null, authColumns, authArgs).FirstOrDefault();
-                        break;
-
                     default:
                         user = db.Select<Customer>(null, authColumns, authArgs).FirstOrDefault();
                         break;
@@ -105,20 +101,20 @@ namespace DemoExam.ViewModels
             mWindow.Show();
 
             Application.Current.MainWindow = mWindow;
+            Close(false);
+        }
+
+        private void Quit(object parameter) => Close();
+
+        private void Close(bool willAsk = true)
+        {
             Application.Current.Windows.OfType<AuthWindow>()
                 .ToList()
                 .ForEach(w =>
                 {
-                    w.WillAsk = false;
+                    w.WillAsk = willAsk;
                     w.Close();
                 });
-        }
-
-        private void Quit(object parameter)
-        {
-            Application.Current.Windows.OfType<AuthWindow>()
-                .ToList()
-                .ForEach(w => w.Close());
         }
     }
 }

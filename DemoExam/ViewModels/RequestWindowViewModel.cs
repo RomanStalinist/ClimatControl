@@ -99,10 +99,6 @@ namespace DemoExam.ViewModels
                 if (!IsNewRequest)
                 {
                     db.Update(Request);
-
-
-                    Request.Id = db.Select<Request>(new string[1] { "Id" }, null, null).Last().Id;
-                    var foundRequest = myRequestsVm.Requests.FirstOrDefault(req => req.Id == Request.Id);
                     myRequestsVm.Requests = new ObservableCollection<Request>(myRequestsVm.Requests.OrderBy(req => req.Id));
                 }
                 else
@@ -120,7 +116,7 @@ namespace DemoExam.ViewModels
 
                     db.Insert(requestStatus);
 
-                    Request.Id = db.Select<Request>(new string[1] { "Id" }, null, null).Last().Id;
+                    Request.Id = lastRequestId;
                     myRequestsVm.Requests.Add(Request);
                 }
 
