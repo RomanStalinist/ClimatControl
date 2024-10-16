@@ -1,0 +1,64 @@
+﻿<Window x:Class="DemoExam.Views.MainWindow"
+        xmlns:vm="clr-namespace:DemoExam.ViewModels"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        Width="800"
+        Height="450"
+        MinWidth="400"
+        MinHeight="300"
+        Title="Climat Control"
+        Background="#1f1f1f"
+        Foreground="#dfdfdf"
+        ResizeMode="CanResizeWithGrip"
+        WindowStartupLocation="CenterScreen">
+    
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+
+    <Border BorderThickness=".5"
+            Background="#001f1f1f"
+            BorderBrush="#FF6918FD"
+            MouseLeftButtonDown="Border_MouseLeftButtonDown">
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <ListView Grid.Column="0"
+                      BorderBrush="#FF6918FD"
+                      BorderThickness="0,0,1,0"
+                      Background="Transparent"
+                      SelectedItem="{Binding MenuItem}"
+                      ItemsSource="{Binding MenuItems}">
+                
+                <ListView.ItemContainerStyle>
+                    
+                    <Style TargetType="ListViewItem">
+                        
+                        <Setter Property="Padding"
+                                Value="8"/>
+                        
+                        <Setter Property="Foreground"
+                                Value="#dfdfdf"/>
+                        
+                        <Setter Property="Background"
+                                Value="#dd1f1f1f"/>
+                        
+                    </Style>
+                    
+                </ListView.ItemContainerStyle>
+                
+            </ListView>
+
+            <Border Grid.Column="1">
+                <Frame Content="{Binding CurrentPage}"
+                       NavigationUIVisibility="Hidden"/>
+            </Border>
+
+        </Grid>
+
+    </Border>
+</Window>

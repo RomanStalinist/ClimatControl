@@ -1,0 +1,57 @@
+﻿<Window x:Class="DemoExam.Views.CommentWindow"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        Width="240"
+        Height="160"
+        WindowStyle="None"
+        Title="Комментарий"
+        ShowInTaskbar="False"
+        ResizeMode="NoResize"
+        Background="#1f1f1f"
+        Foreground="#dfdfdf"
+        WindowStartupLocation="CenterScreen">
+
+    <Border BorderThickness=".5"
+            Background="#001f1f1f"
+            BorderBrush="#FF6918FD"
+            MouseLeftButtonDown="Border_MouseLeftButtonDown">
+
+        <Grid Margin="16">
+            
+            <StackPanel>
+                
+                <Label Content="Комментарий"
+                       Foreground="#dfdfdf"/>
+
+                <TextBox Height="60"
+                         Padding="4"
+                         MaxLines="5"
+                         TextWrapping="Wrap"
+                         Foreground="#dfdfdf"
+                         Background="#2f2f2f"
+                         Text="{Binding Content, Mode=TwoWay}"/>
+                
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Stretch">
+
+                <Button Padding="16,8"
+                        Margin="0,0,8,0"
+                        Content="Добавление"
+                        Background="#FF673DB5"
+                        Command="{Binding AddCommand}"/>
+
+                <Button Padding="27,8"
+                        Content="Отмена"
+                        Background="White"
+                        Command="{Binding CloseCommand}"/>
+
+            </StackPanel>
+
+        </Grid>
+        
+    </Border>
+
+</Window>

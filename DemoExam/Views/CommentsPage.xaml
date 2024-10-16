@@ -1,0 +1,50 @@
+﻿<Page x:Class="DemoExam.Views.CommentsPage"
+      xmlns:c="clr-namespace:DemoExam.Converters"
+      xmlns:vm="clr-namespace:DemoExam.ViewModels"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      mc:Ignorable="d"
+      d:DesignWidth="800"
+      Title="CommentsPage"
+      d:DesignHeight="450"
+      Foreground="#dfdfdf">
+    
+    <Page.Resources>
+        <c:IdToSpecialistName x:Key="IdToSpecialistName"/>
+    </Page.Resources>
+    
+    <Page.DataContext>
+        <vm:CommentsPageViewModel/>
+    </Page.DataContext>
+
+    <ListView BorderThickness="0"
+              Background="Transparent"
+              ItemsSource="{Binding Comments}"
+              SelectedItem="{Binding Comment}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <StackPanel Orientation="Horizontal"
+                            TextBlock.Foreground="#dfdfdf">
+
+                    <TextBlock Padding="8"
+                               Text="{Binding RequestId}"
+                               TextDecorations="Underline"/>
+
+                    <TextBlock Padding="8"
+                               Text="{Binding SpecialistId, Converter={StaticResource IdToSpecialistName}}"/>
+
+                    <TextBlock Padding="8"
+                               Text="{Binding Content}"/>
+
+                    <TextBlock Padding="8"
+                               Foreground="#FF5500"
+                               Text="{Binding CreatedAt}"/>
+
+                </StackPanel>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+    
+</Page>

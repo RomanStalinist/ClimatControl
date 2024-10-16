@@ -1,0 +1,81 @@
+﻿<Window x:Class="DemoExam.Views.AuthWindow"
+        xmlns:c="clr-namespace:DemoExam.Converters"
+        xmlns:vm="clr-namespace:DemoExam.ViewModels"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        Width="400"
+        Height="332"
+        WindowStyle="None"
+        Title="Авторизация"
+        ResizeMode="NoResize"
+        Background="#1f1f1f"
+        Foreground="#dfdfdf"
+        WindowStartupLocation="CenterScreen">
+    
+    <Window.Resources>
+        <c:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
+    </Window.Resources>
+    
+    <Window.DataContext>
+        <vm:AuthWindowViewModel/>
+    </Window.DataContext>
+
+    <Border BorderThickness=".5"
+            BorderBrush="#FF6918FD">
+
+        <Grid Margin="20"
+              VerticalAlignment="Center">
+
+            <StackPanel TextBlock.Foreground="#dfdfdf">
+
+                <TextBlock Margin="4"
+                           Text="Телефон"/>
+
+                <TextBox Margin="4"
+                         Padding="8"
+                         MinWidth="200"
+                         Foreground="#dfdfdf"
+                         Background="#232527"
+                         Text="{Binding Phone}"/>
+                
+                <TextBlock Margin="4"
+                           Text="Пароль"/>
+
+                <TextBox Margin="4"
+                         Padding="8"
+                         MinWidth="200"
+                         Foreground="#dfdfdf"
+                         Background="#232527"
+                         Text="{Binding Password}"/>
+
+                <ComboBox Margin="4"
+                          Padding="8"
+                          ItemsSource="{Binding Roles}"
+                          SelectedItem="{Binding Role}"/>
+
+                <TextBlock Margin="4"
+                           Padding="4"
+                           Foreground="#cc3333"
+                           TextAlignment="Center"
+                           Text="{Binding Message, Mode=TwoWay}"
+                           Visibility="{Binding Message, Converter={StaticResource StringToVisibilityConverter}}"/>
+
+                <Button Margin="4"
+                        Padding="8"
+                        Content="Войти"
+                        Background="DodgerBlue"
+                        Command="{Binding AuthCommand}"/>
+            
+                <Button Margin="4"
+                        Padding="8"
+                        Content="Выйти"
+                        Background="#cc3300"
+                        Command="{Binding QuitCommand}"/>
+
+            </StackPanel>
+
+        </Grid>
+        
+    </Border>
+    
+</Window>

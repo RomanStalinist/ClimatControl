@@ -1,0 +1,47 @@
+﻿<Page x:Class="DemoExam.Views.QuitPage"
+      xmlns:vm="clr-namespace:DemoExam.ViewModels"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:DemoExam.Views"
+      Title="QuitPage"
+      mc:Ignorable="d"
+      d:DesignWidth="800"
+      d:DesignHeight="450"
+      Foreground="#dfdfdf"
+      Background="#1f1f1f">
+    
+    <Page.DataContext>
+        <vm:QuitPageViewModel/>
+    </Page.DataContext>
+
+    <Grid Background="#232527"
+          VerticalAlignment="Center"
+          HorizontalAlignment="Center">
+        
+        <StackPanel Margin="20">
+            
+            <TextBlock FontSize="24"
+                       Margin="0,0,0,20"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"
+                       Text="Вы уверены, что хотите выйти?"/>
+
+            <StackPanel Orientation="Horizontal"
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Right">
+
+                <Button Content="Да"
+                        Padding="20,8"
+                        Foreground="#1f1f1f"
+                        Background="#007dff"
+                        Command="{Binding QuitCommand}"/>
+
+            </StackPanel>
+            
+        </StackPanel>
+        
+       
+    </Grid>
+</Page>
