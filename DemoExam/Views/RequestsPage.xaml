@@ -15,59 +15,67 @@
         <vm:RequestsPageViewModel/>
     </Page.DataContext>
 
-    <ListView BorderThickness="0"
-              Background="#001f1f1f"
-              ItemsSource="{Binding Requests}"
-              SelectedItem="{Binding Request, Mode=TwoWay}">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <Grid Background="#001f1f1f"
-                      TextBlock.Foreground="#dfdfdf">
-                    <Grid.ColumnDefinitions>
-                    
-                        <ColumnDefinition Width="40"
-                                          SharedSizeGroup="A"/>
-                    
-                        <ColumnDefinition SharedSizeGroup="B"/>
-                    
-                        <ColumnDefinition Width="100"
-                                          SharedSizeGroup="C"/>
-                    
-                        <ColumnDefinition Width="100"
-                                          SharedSizeGroup="D"/>
-                    
-                    </Grid.ColumnDefinitions>
+    <Grid Grid.IsSharedSizeScope="True">
+        <ListView BorderThickness="0"
+                  Background="#001f1f1f"
+                  ItemsSource="{Binding Requests}"
+                  SelectedItem="{Binding Request, Mode=TwoWay}">
+            
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Background="#001f1f1f"
+                          TextBlock.Foreground="#dfdfdf">
+                        
+                        <Grid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Tag="1"
+                                          Click="ChangeStatus_Click"
+                                          Header="В процессе ремонта"/>
+                                <MenuItem Tag="2"
+                                          Header="Завершена"
+                                          Click="ChangeStatus_Click"/>
+                                <MenuItem Tag="3"
+                                          Header="Ожидание комплектующих"
+                                          Click="ChangeStatus_Click"/>
+                            </ContextMenu>
+                        </Grid.ContextMenu>
+                        
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"
+                                              SharedSizeGroup="A"/>
+                            <ColumnDefinition SharedSizeGroup="B"/>
+                            <ColumnDefinition Width="Auto"
+                                              SharedSizeGroup="C"/>
+                        </Grid.ColumnDefinitions>
 
-                    <TextBlock Padding="8"
-                               Text="{Binding Id}"
-                               TextAlignment="Right"
-                               TextDecorations="Underline"/>
+                        <TextBlock Padding="8"
+                                   Text="{Binding Id}"
+                                   TextAlignment="Right"
+                                   TextDecorations="Underline"/>
 
-                    <StackPanel Grid.Column="1">
-                
-                        <TextBlock Padding="8"
-                                   Text="{Binding DeviceModel, StringFormat='Версия: {0}'}"/>
-                
-                        <TextBlock Padding="8"
-                                   Text="{Binding EquipmentType, StringFormat='Оборудование: {0}'}"/>
-                
-                        <TextBlock Padding="8"
-                                   Text="{Binding ProblemDescription, StringFormat='Описание проблемы: {0}'}"/>
-                
-                    </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Padding="8"
+                                       Text="{Binding DeviceModel, StringFormat='Версия: {0}'}"/>
+                            <TextBlock Padding="8"
+                                       Text="{Binding EquipmentType, StringFormat='Оборудование: {0}'}"/>
+                            <TextBlock Padding="8"
+                                       Text="{Binding ProblemDescription, StringFormat='Описание проблемы: {0}'}"/>
+                        </StackPanel>
 
-                    <Button Padding="16"
-                            Grid.Column="2"
-                            Background="#0077ff"
-                            CommandParameter="{Binding}"
-                            Command="{Binding DataContext.AnswerCommand, RelativeSource={RelativeSource AncestorType=ListView}}">
-                        <TextBlock>
-                            <Underline>О</Underline>тветить
-                        </TextBlock>
-                    </Button>
-                </Grid>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
-    
+                        <Button Padding="36"
+                                Grid.Column="2"
+                                Background="#0077ff"
+                                VerticalAlignment="Center"
+                                CommandParameter="{Binding}"
+                                Style="{DynamicResource BlueButton}"
+                                Command="{Binding DataContext.AnswerCommand, RelativeSource={RelativeSource AncestorType=ListView}}">
+                            <TextBlock>
+                                <Underline>О</Underline>тветить
+                            </TextBlock>
+                        </Button>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
 </Page>

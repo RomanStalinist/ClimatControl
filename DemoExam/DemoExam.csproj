@@ -14,6 +14,8 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,8 +37,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -62,9 +71,12 @@
     <Compile Include="Interfaces\IDb.cs" />
     <Compile Include="Interfaces\IEntity.cs" />
     <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\FaultTypeValue.cs" />
     <Compile Include="Models\Request.cs" />
+    <Compile Include="Models\RequestAndStatus.cs" />
     <Compile Include="Models\RequestSpecialist.cs" />
     <Compile Include="Models\RequestStatus.cs" />
+    <Compile Include="Models\Statistics.cs" />
     <Compile Include="Models\Status.cs" />
     <Compile Include="ViewModels\AssignmentsPageViewModel.cs" />
     <Compile Include="ViewModels\CommentsPageViewModel.cs" />
@@ -185,6 +197,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Data\ClimateControl.bak" />
     <None Include="Info\Csv\Comments.csv" />
     <None Include="Info\Csv\Customers.csv" />
     <None Include="Info\Csv\Requests.csv" />
@@ -193,6 +206,7 @@
     <None Include="Info\Csv\Specialists.csv" />
     <None Include="Info\Csv\Statuses.csv" />
     <None Include="Info\Задание.docx" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -202,7 +216,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\db.sql" />
     <Resource Include="Info\idef0_1.png" />
     <Resource Include="Info\idef0_2.png" />
     <Resource Include="Info\idef0_3.png" />

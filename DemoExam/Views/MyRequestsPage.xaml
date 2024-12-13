@@ -32,29 +32,6 @@
                     <Grid Background="#001f1f1f"
                           TextBlock.Foreground="#dfdfdf">
                         
-                        <Grid.ContextMenu>
-                            
-                            <ContextMenu>
-                                <ContextMenu.DataContext>
-                                    <vm:MyRequestsPageViewModel/>
-                                </ContextMenu.DataContext>
-                                
-                                <MenuItem CommandParameter="1"
-                                          Header="В процессе ремонта"
-                                          Command="{Binding ChangeStatusCommand}"/>
-                                
-                                <MenuItem Header="Завершена"
-                                          CommandParameter="2"
-                                          Command="{Binding ChangeStatusCommand}"/>
-                                
-                                <MenuItem CommandParameter="3"
-                                          Header="Ожидание комплектующих"
-                                          Command="{Binding ChangeStatusCommand}"/>
-                                
-                            </ContextMenu>
-                            
-                        </Grid.ContextMenu>
-                        
                         <Grid.ToolTip>
                             
                             <ToolTip Padding="8"
@@ -90,10 +67,10 @@
                         <StackPanel Grid.Column="1">
                         
                             <TextBlock Padding="8"
-                                       Text="{Binding DeviceModel, StringFormat='Версия: {0}'}"/>
+                                       Text="{Binding DeviceModel, StringFormat='Модель устройства: {0}'}"/>
                         
                             <TextBlock Padding="8"
-                                       Text="{Binding EquipmentType, StringFormat='Оборудование: {0}'}"/>
+                                       Text="{Binding EquipmentType, StringFormat='Тип экипировки: {0}'}"/>
                         
                             <TextBlock Padding="8"
                                        Text="{Binding ProblemDescription, StringFormat='Описание проблемы: {0}'}"/>
@@ -104,6 +81,7 @@
                                 Grid.Column="2"
                                 Background="#0077ff"
                                 CommandParameter="{Binding}"
+                                Style="{StaticResource BlueButton}"
                                 Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType=ListView}}">
                             <TextBlock>
                                 <Underline>И</Underline>зменить
@@ -114,6 +92,7 @@
                                 Grid.Column="3"
                                 Background="#cc3300"
                                 CommandParameter="{Binding}"
+                                Style="{StaticResource RedButton}"
                                 Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=ListView}}">
                             <TextBlock>
                                 <Underline>У</Underline>далить
@@ -136,7 +115,8 @@
                         Content="Добавить"
                         Background="#FF673DB5"
                         HorizontalAlignment="Right"
-                        Command="{Binding AddCommand}"/>
+                        Command="{Binding AddCommand}"
+                        Style="{StaticResource PurpleButton}"/>
 
             </Grid>
             

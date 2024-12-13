@@ -106,7 +106,7 @@ namespace DemoExam.ViewModels
                     Request.CustomerId = App.User.Id;
                     db.Insert(Request);
 
-                    var lastRequestId = db.Select<Request>(new string[1] { "Id" }, null, null).Last().Id;
+                    var lastRequestId = db.Select<Request>(new string[] { "Id" }, null, null).Last().Id;
 
                     var requestStatus = new RequestStatus
                     {

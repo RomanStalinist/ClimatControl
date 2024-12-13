@@ -6,11 +6,11 @@
         Height="450"
         MinWidth="400"
         MinHeight="300"
-        Title="Climat Control"
         Background="#1f1f1f"
         Foreground="#dfdfdf"
         ResizeMode="CanResizeWithGrip"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Title="Ремонт климатического оборудования">
     
     <Window.DataContext>
         <vm:MainWindowViewModel/>

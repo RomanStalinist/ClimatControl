@@ -3,14 +3,13 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Width="400"
-        Height="240"
-        Title="Запрос"
+        Height="280"
         Topmost="True"
-        WindowStyle="None"
         ShowInTaskbar="False"
         ResizeMode="NoResize"
         Background="#1f1f1f"
         Foreground="#dfdfdf"
+        Title="Оформление заявки"
         WindowStartupLocation="CenterScreen">
 
     <Border BorderThickness=".5"
@@ -21,14 +20,6 @@
         <Grid Margin="16">
 
             <StackPanel>
-
-                <Label Foreground="#dfdfdf"
-                       Content="Тип экипировки"/>
-                
-                <TextBox Padding="4"
-                         Foreground="#dfdfdf"
-                         Background="#2f2f2f"
-                         Text="{Binding EquipmentType, Mode=TwoWay}"/>
                 
                 <Label Foreground="#dfdfdf"
                        Content="Модель устройства"/>
@@ -37,6 +28,14 @@
                          Foreground="#dfdfdf"
                          Background="#2f2f2f"
                          Text="{Binding DeviceModel, Mode=TwoWay}"/>
+
+                <Label Foreground="#dfdfdf"
+                       Content="Тип экипировки"/>
+                
+                <TextBox Padding="4"
+                         Foreground="#dfdfdf"
+                         Background="#2f2f2f"
+                         Text="{Binding EquipmentType, Mode=TwoWay}"/>
                 
                 <Label Foreground="#dfdfdf"
                        Content="Описание проблемы"/>
@@ -56,12 +55,14 @@
                         Margin="0,0,8,0"
                         Background="#FF673DB5"
                         Content="{Binding BtnContent}"
-                        Command="{Binding ChangeCommand}"/>
+                        Command="{Binding ChangeCommand}"
+                        Style="{DynamicResource PurpleButton}"/>
 
                 <Button Padding="8"
                         Content="Отмена"
-                        Background="White"
-                        Command="{Binding CloseCommand}"/>
+                        Background="#BDBEBE"
+                        Command="{Binding CloseCommand}"
+                        Style="{DynamicResource WhiteButton}"/>
 
             </StackPanel>
 

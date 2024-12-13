@@ -74,6 +74,41 @@ namespace DemoExam.Data
             return results;
         }
 
+        public IEnumerable<T> RawSelect<T>(string sql) where T : IEntity
+        {
+            Connection.Open();
+            Debug.WriteLineIf(TraceLevel is TraceLevel.Info, "Connection opened");
+
+            var cmd = Connection.CreateCommand();
+            cmd.CommandText = sql;
+            Debug.WriteLineIf(TraceLevel is TraceLevel.Info, cmd.CommandText);
+
+            var reader = cmd.ExecuteReader();
+            var results = new List<T>();
+
+            while (reader.Read())
+            {
+                var item = Activator.CreateInstance<T>();
+                foreach (var property in item.GetType().GetProperties())
+                {
+                    try
+                    {
+                        var value = reader[property.Name];
+                        property.SetValue(item, value is DBNull ? null : value);
+                    }
+                    catch (IndexOutOfRangeException ioore)
+                    {
+                        Debug.WriteLineIf(TraceLevel is TraceLevel.Info, $"Skipping column {ioore.Message}");
+                    }
+                }
+                results.Add(item);
+            }
+
+            Connection.Close();
+            Debug.WriteLineIf(TraceLevel is TraceLevel.Info, "Connection closed");
+            return results;
+        }
+
         public int Insert<T>(T item) where T : IEntity
         {
             Connection.Open();

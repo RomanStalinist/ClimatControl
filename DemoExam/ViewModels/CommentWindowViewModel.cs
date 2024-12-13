@@ -48,7 +48,11 @@ namespace DemoExam.ViewModels
             using (var db = new Db())
             {
                 db.Insert(newComment);
-                db.Insert(newRequestSpecialist);
+                if (!db.Select<RequestSpecialist>(
+                    new string[] { "RequestId", "SpecialistId" },
+                    new string[] { "RequestId = @RequestId", "SpecialistId = @SpecialistId" },
+                    new object[] { _request.Id, specialistId }).Any())
+                    db.Insert(newRequestSpecialist);
             }
 
             Close(parameter);

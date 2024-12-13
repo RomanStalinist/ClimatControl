@@ -2,13 +2,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         Width="240"
-        Height="160"
-        WindowStyle="None"
-        Title="Комментарий"
-        ShowInTaskbar="False"
+        Height="200"
+        Topmost="True"
         ResizeMode="NoResize"
+        ShowInTaskbar="False"
         Background="#1f1f1f"
         Foreground="#dfdfdf"
+        Title="Добавление комментария"
         WindowStartupLocation="CenterScreen">
 
     <Border BorderThickness=".5"
@@ -33,22 +33,29 @@
                 
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal"
-                        VerticalAlignment="Bottom"
-                        HorizontalAlignment="Stretch">
+            <Grid VerticalAlignment="Bottom"
+                  HorizontalAlignment="Stretch">
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
 
-                <Button Padding="16,8"
-                        Margin="0,0,8,0"
+                <Button Padding="8"
                         Content="Добавление"
                         Background="#FF673DB5"
-                        Command="{Binding AddCommand}"/>
+                        Command="{Binding AddCommand}"
+                        Style="{DynamicResource PurpleButton}"/>
 
-                <Button Padding="27,8"
+                <Button Padding="8"
+                        Grid.Column="1"
                         Content="Отмена"
-                        Background="White"
-                        Command="{Binding CloseCommand}"/>
+                        Margin="10,0,0,0"
+                        Background="#BDBEBE"
+                        Command="{Binding CloseCommand}"
+                        Style="{DynamicResource WhiteButton}"/>
 
-            </StackPanel>
+            </Grid>
 
         </Grid>
         

@@ -36,7 +36,8 @@
                         Padding="20,8"
                         Foreground="#1f1f1f"
                         Background="#007dff"
-                        Command="{Binding QuitCommand}"/>
+                        Command="{Binding QuitCommand}"
+                        Style="{DynamicResource BlueButton}"/>
 
             </StackPanel>
             

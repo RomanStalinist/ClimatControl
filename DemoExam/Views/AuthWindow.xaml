@@ -4,13 +4,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         Width="400"
-        Height="332"
+        Height="400"
         WindowStyle="None"
-        Title="Авторизация"
         ResizeMode="NoResize"
         Background="#1f1f1f"
         Foreground="#dfdfdf"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        Title="Ремонт климатического оборудования | Авторизация">
     
     <Window.Resources>
         <c:StringToVisibilityConverter x:Key="StringToVisibilityConverter"/>
@@ -25,8 +26,21 @@
 
         <Grid Margin="20"
               VerticalAlignment="Center">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
-            <StackPanel TextBlock.Foreground="#dfdfdf">
+            <TextBlock Margin="16"
+                       FontSize="18"
+                       Text="Авторизация"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"
+                       Foreground="#dfdfdf"/>
+
+            <StackPanel Grid.Row="1"
+                        TextBlock.Foreground="#dfdfdf">
 
                 <TextBlock Margin="4"
                            Text="Телефон"/>
@@ -34,9 +48,11 @@
                 <TextBox Margin="4"
                          Padding="8"
                          MinWidth="200"
+                         MaxLength="11"
                          Foreground="#dfdfdf"
                          Background="#232527"
-                         Text="{Binding Phone}"/>
+                         Text="{Binding Phone}"
+                         ToolTipService.ToolTip="Формат телефона: 70000000000"/>
                 
                 <TextBlock Margin="4"
                            Text="Пароль"/>
@@ -63,14 +79,16 @@
                 <Button Margin="4"
                         Padding="8"
                         Content="Войти"
-                        Background="DodgerBlue"
-                        Command="{Binding AuthCommand}"/>
+                        Background="#0077FF"
+                        Command="{Binding AuthCommand}"
+                        Style="{DynamicResource BlueButton}"/>
             
                 <Button Margin="4"
                         Padding="8"
                         Content="Выйти"
                         Background="#cc3300"
-                        Command="{Binding QuitCommand}"/>
+                        Command="{Binding QuitCommand}"
+                        Style="{DynamicResource RedButton}"/>
 
             </StackPanel>
 
